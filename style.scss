@@ -1,0 +1,466 @@
+/*-------------------------------------------
+全体の設定
+-------------------------------------------*/
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+:after,
+:before {
+  background-repeat: no-repeat;
+  // ▼親要素の値を継承する
+  // 参考：https://jajaaan.co.jp/web-production/frontend/box-sizing/
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  // ▼デフォルトを10pxにする
+  // 参考：https://jajaaan.co.jp/css/font-size-rem/
+  font-size: 62.5%;
+}
+
+body {
+  color: #333;
+  font-size: 1.4rem;
+  color: #333;
+  font-family: "游ゴシック体", "YuGothic", "游ゴシック Medium",
+    "Yu Gothic Medium", "游ゴシック", "Yu Gothic", "メイリオ", sans-serif;
+  letter-spacing: 0.1em;
+}
+
+// ▼レスポンシブ時の右側の余白を消す
+// 参考：https://aya2kiku.com/htmlcss_space/
+.wrap {
+  overflow: hidden;
+}
+
+/*-------------------------------------------
+共通
+-------------------------------------------*/
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  display: inline-block;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: bottom;
+}
+
+p {
+  font-size: 1.44rem;
+  font-weight: normal;
+}
+
+.sec-title {
+  font-size: 3.6rem;
+  margin-bottom: 30px;
+
+  @media screen and (max-width: 599px) {
+font-size: 2.4rem;
+  }
+}
+
+.sec-title.white {
+  font-size: 3.6rem;
+  margin-bottom: 30px;
+  color: #fff;
+
+  @media screen and (max-width: 599px) {
+    font-size: 2.4rem;
+      }
+}
+
+// ▼フューチャーのスライド表示用
+.fadein {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1s;
+}
+
+/*-------------------------------------------
+ヘッダー
+-------------------------------------------*/
+
+#header {
+  width: 100%;
+  position: fixed;
+  z-index: 2;
+  background-color: #fff;
+  height: 80px;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .site-title {
+    height: 40px;
+  }
+
+  @media screen and (max-width: 599px) {
+    padding: 20px 16px;
+  }
+  
+}
+
+// ▼ハンバーガーボタン
+.hamburger {
+  display: block;
+  position: fixed;
+  z-index: 10;
+  top: 25px;
+  right: 50px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  text-align: center;
+
+  @media screen and (max-width: 599px) {
+    top:25px;
+    right:20px;
+  }
+
+  span {
+    display: block;
+    position: absolute;
+    width: 30px;
+    height: 2px;
+    left: 6px;
+    background: #555;
+
+    &:nth-child(1) {
+      top: 4px;
+    }
+
+    &:nth-child(2) {
+      top: 14px;
+    }
+
+    &:nth-child(3) {
+      bottom: 4px;
+    }
+
+    // ▼ボタンをクリックした時の動き
+    transition: 0.5s ease-in-out;
+  }
+}
+
+// ボタンの動き 参考：
+// https://weblasts.com/css/hamburger-css-only
+
+// ▼ナビが開いている時のボタン
+.open .hamburger span {
+  &:nth-child(1) {
+    background: #fff;
+    transform: translateY(9px) rotate(-405deg);
+  }
+
+  &:nth-child(2) {
+    opacity: 0;
+  }
+
+  &:nth-child(3) {
+    background: #fff;
+    transform: translateY(-9px) rotate(405deg);
+  }
+}
+
+#navi {
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 300px;
+  color: #fff;
+  padding: 65px 25px;
+  transition: all 0.5s;
+  z-index: 2;
+  opacity: 0;
+  background-color: #000;
+  height: 100vh;
+
+  .navi-menu {
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+    margin-bottom: 60px;
+    text-align: left;
+
+    li {
+      list-style-type: none;
+      padding: 0;
+      width: 100%;
+      transition: 0.4s all;
+      padding: 20px 0;
+      border-top: 1px solid #fff;
+
+      &:last-child {
+        border-bottom: 1px solid #fff;
+      }
+
+      a {
+        display: block;
+        color: #fff;
+        font-size: 1.44rem;
+      }
+    }
+  }
+
+  .navi-sns {
+    text-align: left;
+
+    li {
+      padding: 5px 0;
+    }
+
+    a {
+      display: block;
+      color: #fff;
+      font-size: 1.44rem;
+    }
+  }
+}
+
+// ▼このクラスを、jQueryで付与・削除
+// ナビが開閉する時の動き
+.open #navi {
+  left: 0;
+  opacity: 100;
+}
+
+#mask {
+  display: none;
+  transition: all 0.5s;
+}
+
+// メニューを開いている時は、全体を黒背景にする
+.open #mask {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.8;
+  z-index: 1;
+  cursor: pointer;
+}
+
+/*-------------------------------------------
+メイン
+-------------------------------------------*/
+#main {
+  padding-top: 80px;
+}
+
+/*-------------------------------------------
+ビデオ
+-------------------------------------------*/
+#bg-video {
+  width: 100%;
+
+  @media screen and (max-width: 599px) {
+height:100vh;
+object-fit: cover;
+  }
+}
+
+/*-------------------------------------------
+ピックアップ
+-------------------------------------------*/
+#pickup {
+  text-align: center;
+  padding: 100px 0 50px;
+
+  @media screen and (max-width: 599px) {
+padding: 80px 0;
+}
+}
+
+// slickでカルーセル実装：参考
+// http://kenwheeler.github.io/slick/
+// https://www.jungleocean.com/programming/190201jquery-slick
+
+.center {
+  margin: 0 0 50px;
+}
+.center img {
+  width: 100%;
+  height: auto;
+  padding: 0 30px;
+}
+.center .slick-next {
+  right: 20px;
+  z-index: 99;
+}
+.center .slick-prev {
+  left: 15px;
+  z-index: 100;
+}
+
+/*-------------------------------------------
+フューチャー
+-------------------------------------------*/
+#feature {
+  max-width: 1240px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 100px 16px 50px;
+  margin: -50px auto 10px auto;
+
+  @media screen and (max-width: 599px) {
+padding: 80px 16px;
+  }
+
+  .grid {
+    display: grid;
+    grid-gap: 20px; /* 行列の隙間 */
+
+    // 最小300px、最大は画面幅に合わせる処理をアイテムがある分繰り返す
+    // fr=外枠に合わせてグリッドを分割し、そのサイズを自動調整する
+    // 参考：https://web.hazu.jp/grid-layout-02/
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+    .g-item {
+      box-shadow: 0 0 10px #c6c6c6; /* ぼかしだけ指定すると全方向に影を付けられる */
+
+    }
+  
+
+    .item-content {
+      padding: 30px;
+    }
+
+    .item-cate,
+    .item-text {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .item-cate,
+    .item-data {
+      font-size: 1.2rem;
+    }
+
+    .item-text {
+      font-weight: bold;
+    }
+
+    .item-data {
+      text-align: right;
+    }
+  }
+}
+
+/*-------------------------------------------
+コンタクト
+-------------------------------------------*/
+
+// メールフォーム参考：
+// https://www-creators.com/archives/2486
+
+#contact {
+  text-align: center;
+  background-color: #000;
+  padding: 50px 0;
+
+  .content {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 16px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.44rem;
+
+    @media screen and (max-width: 599px) {
+      flex-direction: column;
+    }
+
+
+  }
+
+  .contact-info {
+    width: 45%;
+    text-align: justify;
+
+    @media screen and (max-width: 599px) {
+width: 100%;
+    }
+
+    p {
+      margin-bottom: 30px;
+      color: #fff;
+    }
+  }
+
+  .contact-form {
+    width: 45%;
+
+    @media screen and (max-width: 599px) {
+width: 100%;
+  }
+}
+
+  form {
+    color: #fff;
+    text-align: left;
+
+    input#name-area,
+    input#mail-area {
+      width: 100%;
+      height: 44px;
+      margin-bottom: 20px;
+    }
+
+    textarea#message-area {
+      width: 100%;
+      height: 68px;
+      resize: vertical;
+      margin-bottom: 20px;
+    }
+
+    .button {
+      input#submit {
+        width: 200px;
+        height: 50px;
+        border: 1px solid #fff;
+        padding: 12px 0;
+        background-color: #000;
+        color: #fff;
+        cursor: pointer;
+        font-size: 1.44rem;
+
+        &:hover {
+          background-color: #fff;
+          color: #000;
+        }
+
+    @media screen and (max-width: 599px) {
+width: 100%;
+    }
+      }
+    }
+  }
+}
+
+/*-------------------------------------------
+フッター
+-------------------------------------------*/
+#footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #000;
+
+  .copyright {
+    font-size: 1.2rem;
+    color: #fff;
+  }
+}

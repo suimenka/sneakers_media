@@ -1,0 +1,481 @@
+@charset "UTF-8";
+/*-------------------------------------------
+全体の設定
+-------------------------------------------*/
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+:after,
+:before {
+  background-repeat: no-repeat;
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+html {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  color: #333;
+  font-size: 1.4rem;
+  color: #333;
+  font-family: "游ゴシック体", "YuGothic", "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", "メイリオ", sans-serif;
+  letter-spacing: 0.1em;
+}
+
+.wrap {
+  overflow: hidden;
+}
+
+/*-------------------------------------------
+共通
+-------------------------------------------*/
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  display: inline-block;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: bottom;
+}
+
+p {
+  font-size: 1.44rem;
+  font-weight: normal;
+}
+
+.sec-title {
+  font-size: 3.6rem;
+  margin-bottom: 30px;
+}
+
+@media screen and (max-width: 599px) {
+  .sec-title {
+    font-size: 2.4rem;
+  }
+}
+
+.sec-title.white {
+  font-size: 3.6rem;
+  margin-bottom: 30px;
+  color: #fff;
+}
+
+@media screen and (max-width: 599px) {
+  .sec-title.white {
+    font-size: 2.4rem;
+  }
+}
+
+.fadein {
+  opacity: 0;
+  -webkit-transform: translateY(20px);
+          transform: translateY(20px);
+  -webkit-transition: all 1s;
+  transition: all 1s;
+}
+
+/*-------------------------------------------
+ヘッダー
+-------------------------------------------*/
+#header {
+  width: 100%;
+  position: fixed;
+  z-index: 2;
+  background-color: #fff;
+  height: 80px;
+  padding: 20px 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#header .site-title {
+  height: 40px;
+}
+
+@media screen and (max-width: 599px) {
+  #header {
+    padding: 20px 16px;
+  }
+}
+
+.hamburger {
+  display: block;
+  position: fixed;
+  z-index: 10;
+  top: 25px;
+  right: 50px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  text-align: center;
+}
+
+@media screen and (max-width: 599px) {
+  .hamburger {
+    top: 25px;
+    right: 20px;
+  }
+}
+
+.hamburger span {
+  display: block;
+  position: absolute;
+  width: 30px;
+  height: 2px;
+  left: 6px;
+  background: #555;
+  -webkit-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+}
+
+.hamburger span:nth-child(1) {
+  top: 4px;
+}
+
+.hamburger span:nth-child(2) {
+  top: 14px;
+}
+
+.hamburger span:nth-child(3) {
+  bottom: 4px;
+}
+
+.open .hamburger span:nth-child(1) {
+  background: #fff;
+  -webkit-transform: translateY(9px) rotate(-405deg);
+          transform: translateY(9px) rotate(-405deg);
+}
+
+.open .hamburger span:nth-child(2) {
+  opacity: 0;
+}
+
+.open .hamburger span:nth-child(3) {
+  background: #fff;
+  -webkit-transform: translateY(-9px) rotate(405deg);
+          transform: translateY(-9px) rotate(405deg);
+}
+
+#navi {
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 300px;
+  color: #fff;
+  padding: 65px 25px;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  z-index: 2;
+  opacity: 0;
+  background-color: #000;
+  height: 100vh;
+}
+
+#navi .navi-menu {
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+  margin-bottom: 60px;
+  text-align: left;
+}
+
+#navi .navi-menu li {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+  -webkit-transition: 0.4s all;
+  transition: 0.4s all;
+  padding: 20px 0;
+  border-top: 1px solid #fff;
+}
+
+#navi .navi-menu li:last-child {
+  border-bottom: 1px solid #fff;
+}
+
+#navi .navi-menu li a {
+  display: block;
+  color: #fff;
+  font-size: 1.44rem;
+}
+
+#navi .navi-sns {
+  text-align: left;
+}
+
+#navi .navi-sns li {
+  padding: 5px 0;
+}
+
+#navi .navi-sns a {
+  display: block;
+  color: #fff;
+  font-size: 1.44rem;
+}
+
+.open #navi {
+  left: 0;
+  opacity: 100;
+}
+
+#mask {
+  display: none;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.open #mask {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.8;
+  z-index: 1;
+  cursor: pointer;
+}
+
+/*-------------------------------------------
+メイン
+-------------------------------------------*/
+#main {
+  padding-top: 80px;
+}
+
+/*-------------------------------------------
+ビデオ
+-------------------------------------------*/
+#bg-video {
+  width: 100%;
+}
+
+@media screen and (max-width: 599px) {
+  #bg-video {
+    height: 100vh;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+}
+
+/*-------------------------------------------
+ピックアップ
+-------------------------------------------*/
+#pickup {
+  text-align: center;
+  padding: 100px 0 50px;
+}
+
+@media screen and (max-width: 599px) {
+  #pickup {
+    padding: 80px 0;
+  }
+}
+
+.center {
+  margin: 0 0 50px;
+}
+
+.center img {
+  width: 100%;
+  height: auto;
+  padding: 0 30px;
+}
+
+.center .slick-next {
+  right: 20px;
+  z-index: 99;
+}
+
+.center .slick-prev {
+  left: 15px;
+  z-index: 100;
+}
+
+/*-------------------------------------------
+フューチャー
+-------------------------------------------*/
+#feature {
+  max-width: 1240px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 100px 16px 50px;
+  margin: -50px auto 10px auto;
+}
+
+@media screen and (max-width: 599px) {
+  #feature {
+    padding: 80px 16px;
+  }
+}
+
+#feature .grid {
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 20px;
+  /* 行列の隙間 */
+  -ms-grid-columns: (minmax(300px, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+#feature .grid .g-item {
+  -webkit-box-shadow: 0 0 10px #c6c6c6;
+          box-shadow: 0 0 10px #c6c6c6;
+  /* ぼかしだけ指定すると全方向に影を付けられる */
+}
+
+#feature .grid .item-content {
+  padding: 30px;
+}
+
+#feature .grid .item-cate,
+#feature .grid .item-text {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+#feature .grid .item-cate,
+#feature .grid .item-data {
+  font-size: 1.2rem;
+}
+
+#feature .grid .item-text {
+  font-weight: bold;
+}
+
+#feature .grid .item-data {
+  text-align: right;
+}
+
+/*-------------------------------------------
+コンタクト
+-------------------------------------------*/
+#contact {
+  text-align: center;
+  background-color: #000;
+  padding: 50px 0;
+}
+
+#contact .content {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 16px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  font-size: 1.44rem;
+}
+
+@media screen and (max-width: 599px) {
+  #contact .content {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+#contact .contact-info {
+  width: 45%;
+  text-align: justify;
+}
+
+@media screen and (max-width: 599px) {
+  #contact .contact-info {
+    width: 100%;
+  }
+}
+
+#contact .contact-info p {
+  margin-bottom: 30px;
+  color: #fff;
+}
+
+#contact .contact-form {
+  width: 45%;
+}
+
+@media screen and (max-width: 599px) {
+  #contact .contact-form {
+    width: 100%;
+  }
+}
+
+#contact form {
+  color: #fff;
+  text-align: left;
+}
+
+#contact form input#name-area,
+#contact form input#mail-area {
+  width: 100%;
+  height: 44px;
+  margin-bottom: 20px;
+}
+
+#contact form textarea#message-area {
+  width: 100%;
+  height: 68px;
+  resize: vertical;
+  margin-bottom: 20px;
+}
+
+#contact form .button input#submit {
+  width: 200px;
+  height: 50px;
+  border: 1px solid #fff;
+  padding: 12px 0;
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.44rem;
+}
+
+#contact form .button input#submit:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+@media screen and (max-width: 599px) {
+  #contact form .button input#submit {
+    width: 100%;
+  }
+}
+
+/*-------------------------------------------
+フッター
+-------------------------------------------*/
+#footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #000;
+}
+
+#footer .copyright {
+  font-size: 1.2rem;
+  color: #fff;
+}
+/*# sourceMappingURL=style.css.map */
